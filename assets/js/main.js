@@ -7,11 +7,11 @@ function Book(name, author, read, summary, index) {
     this.read = read;
 }
 
-Book.prototype.addBookToLibrary = function() {
+Book.prototype.addBookToLibrary = function () {
 
 };
 
-Book.prototype.updateToggleRead = function() {
+Book.prototype.updateToggleRead = function () {
     this.read = !this.read;
 }
 
@@ -37,13 +37,19 @@ function saveBook() {
     book.read = document.getElementById("readBook").checked;
 
     let validBook = book.isValid();
+    var element = document.getElementById("warningMessage");
     if (validBook.length == 0) {
         myLibrary.push(book);
         refreshList();
         document.getElementById("warningMessage").innerHTML = "";
+        element.classList.add("hide");
+        element.classList.remove("show");
         clearForm();
     } else {
-        document.getElementById("warningMessage").innerHTML = `Invalid entry on ${validBook.join(", ")}`;
+
+        element.classList.add("show");
+        element.classList.remove("hide");
+        document.getElementById("warningMessage").innerHTML = `Invalid entry on: ${validBook.join(", ")}`;
     }
 }
 
@@ -59,7 +65,7 @@ function removeBook(index) {
     refreshList();
 }
 
-Book.prototype.isValid = function() {
+Book.prototype.isValid = function () {
     let valid = [];
     for (let key in this) {
         if (key != "read")
@@ -70,28 +76,22 @@ Book.prototype.isValid = function() {
     return valid;
 }
 
-Book.prototype.renderBookHtmlTag = function(index) {
-    return `<li>
-          <div class="card">
-            <div class="card-content">
-              <div class="content book-row">
-                <div class="name">${this.name}</div>
-                <div class="description">${this.author}</div>
-                <div class="description">${this.summary}</div>
-                <div class="description">${this.readTag()}</div>
-                <div class="remove-action">
-                    <button type="button" class="btn-remove btn btn-outline-dark" onclick="removeBook(${index})" data-index="${index}">Remove Book</button>
-                </div>
-                <div class="read-action">
-                    <button type="button" class="btn-read btn btn-outline-dark" onclick="updateRead(${index})" data-index="${index}">${this.read? "Unread":"Read"}</button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>`;
+Book.prototype.renderBookHtmlTag = function (index) {
+    return `<div class="item-row container">
+                    <div class="book-row book-row-short">${this.name}</div>
+                    <div class="book-row book-row-short">${this.author}</div>
+                    <div class="book-row book-row-item">${this.summary}</div>
+                    <div class="book-row book-row-short">${this.readTag()}</div>
+                    <div class="book-row remove-action ">
+                        <button type="button" class="btn-remove btn btn-outline-dark" onclick="removeBook(${index})" data-index="${index}">Remove Book</button>
+                    </div>
+                    <div class="book-row read-action ">
+                        <button type="button" class="btn-read btn btn-outline-dark" onclick="updateRead(${index})" data-index="${index}">${this.read ? "Unread" : "Read"}</button>
+                    </div>
+                </div>`;
 }
 
-Book.prototype.showAlert = function() {
+Book.prototype.showAlert = function () {
     console.log("here: " + this.name)
     let label = "book:" + this.name + ", author:" + this.author;
     label += ", summary:" + this.summary;
@@ -104,7 +104,7 @@ Book.prototype.showAlert = function() {
 }
 
 
-Book.prototype.readTag = function() {
+Book.prototype.readTag = function () {
     if (this.read) {
         return '<span class="yes-read">Yes</span>'
     } else {
@@ -126,6 +126,6 @@ function refreshList() {
     booksPlaceholder.innerHTML = renderBooks(myLibrary);
 }
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
     refreshList();
 });

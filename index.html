@@ -22,6 +22,14 @@
     <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
             <section class="book-list">
+                <div class="item-row titles container list-group-item-primary">
+                    <div class="book-row-title book-row-short">Book Title</div>
+                    <div class="book-row-title book-row-short">Author Name</div>
+                    <div class="book-row-title book-row-item">Small Summary</div>
+                    <div class="book-row-title book-row-short">I Read the Book</div>
+                    <div class="book-row-title remove-action ">Delete Book</div>
+                    <div class="book-row-title read-action ">Toggle</div>
+                </div>
                 <div id="bookListRender"></div>
             </section>
         </div>
@@ -35,7 +43,7 @@
                         <div class="card-body">
                             <h5 class="card-title">New Book</h5>
                             <form>
-                                <div class="alert alert-warning" role="alert" id="warningMessage">
+                                <div class="alert alert-warning hide" role="alert" id="warningMessage">
                                 </div>
                                 <div class="form-group">
                                     <label for="bookName">Book Name</label>
