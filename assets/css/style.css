@@ -1,0 +1,10 @@
+.book-form {
+    display: none;
+}
+
+.book-row {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-left: 1px solid black;
+}
