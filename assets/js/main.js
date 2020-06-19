@@ -36,14 +36,38 @@ function saveBook() {
     book.summary = document.getElementById("bookSummary").value;
     book.read = document.getElementById("readBook").checked;
 
-    myLibrary.push(book);
+    let validBook = book.isValid();
+    if (validBook.length == 0) {
+        myLibrary.push(book);
+        refreshList();
+        document.getElementById("warningMessage").innerHTML = "";
+        clearForm();
+    } else {
+        document.getElementById("warningMessage").innerHTML = `Invalid entry on ${validBook.join(", ")}`;
+    }
+}
 
-    refreshList();
+function clearForm() {
+    document.getElementById("bookName").value = "";
+    document.getElementById("bookAuthor").value = "";
+    document.getElementById("bookSummary").value = "";
+    document.getElementById("readBook").checked = false;
 }
 
 function removeBook(index) {
     myLibrary.splice(index, 1);
     refreshList();
+}
+
+Book.prototype.isValid = function() {
+    let valid = [];
+    for (let key in this) {
+        if (key != "read")
+            if (this[key] == '' || this[key] == undefined || this[key] == null) {
+                valid.push(key);
+            }
+    }
+    return valid;
 }
 
 Book.prototype.renderBookHtmlTag = function(index) {
