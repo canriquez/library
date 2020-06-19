@@ -1,37 +1,35 @@
-.book-form {
-}
-
 .titles {
-    height: 40px;
+  height: 40px;
 }
 
 .book-row-title {
-    height: 40px;
+  height: 40px;
 }
 
 .book-row {
-    height: 90px;
+  height: 90px;
 }
 
 .item-row {
-    display: flex;
-    flex-direction: row !important;
-    flex-wrap: nowrap;
-    justify-content: space-around;
-    align-items: center;
+  display: flex;
+  flex-direction: row !important;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .item-row .book-row-short {
-    width: 15%;
+  width: 15%;
 }
+
 .item-row .book-row-item {
-    width: 30%;
+  width: 30%;
 }
 
 .hide {
-    display: none;
+  display: none;
 }
 
 .show {
-    display: block;
+  display: block;
 }

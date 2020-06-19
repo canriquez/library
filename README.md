@@ -1,13 +1,13 @@
 # PROJECT: LIBRARY
 
-> Vanilla Javascript project that buils a small library application where you can add, delete and mark as 'read' books.
+> Vanilla Javascript project that builds a small library application where you can add, delete and mark as 'read' books.
 
 ![screenshot](/app_screenshot.png)
 
 - The home page shows the list of books previously loaded.
-- For each book you can click buttons to remove book from the book.
+- For each book you can click buttons to remove a book from the list.
 - You can update the read/unread status for each book.
-- When you click the New Book button, a for for book creation will render.
+- When you click the New Book button, a form book creation will render.
 - A Basic Data Validation is executed on books creation.
 
 ## Built With
@@ -17,19 +17,10 @@
 
 ## Live Demo
 
-[Live Demo Link](https://canriquez.github.io/library/
+[Live Demo Link](https://canriquez.github.io/library/)
 
 
-## Getting Started
-
-**This is an example of how you may give instructions on setting up your project locally.**
-**Modify this file to match your project, remove sections that don't apply. For example: delete the testing section if the currect project doesn't require testing.**
-
-
-To get a local copy up and running follow these simple example steps.
-
-
-### Setup
+## Setup
 
 - Clone the repository and open Index Page
 
