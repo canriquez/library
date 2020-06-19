@@ -37,13 +37,13 @@ To get a local copy up and running follow these simple example steps.
 
 ## Authors
 
-👤 Carlos Anriquez
+👤 ***Carlos Anriquez***
 
 - Github: [@canriquez](https://github.com/canriquez)
 - Twitter: [@cranriquez](https://twitter.com/cranriquez)
 - Linkedin: [linkedin](https://www.linkedin.com/in/carlosanriquez/)
 
-👤 **Author2**
+👤 ***Xóchitl Selene Flores Pérez***
 
 - Github: [@enelesmai](https://github.com/enelesmai)
 - Twitter: [@enelesmai](https://twitter.com/enelesmai)
