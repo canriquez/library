@@ -51,14 +51,12 @@ Book.prototype.showAlert = function showAlert() {
   return label;
 };
 
-
 Book.prototype.readTag = function readTag() {
   if (this.read) {
     return '<span class="yes-read">Yes</span>';
   }
   return '<span class="no-read">No</span>';
 };
-
 
 function renderBooks(bookList) {
   let htmlTags = '';
@@ -80,7 +78,6 @@ function removeBook(index) {
   myLibrary.splice(index, 1);
   refreshList();
 }
-
 
 function updateRead(index) {
   const book = myLibrary[index];
@@ -108,7 +105,6 @@ function addListeners() {
   }
 }
 
-
 function clearForm() {
   document.getElementById('bookName').value = '';
   document.getElementById('bookAuthor').value = '';
@@ -117,11 +113,9 @@ function clearForm() {
   document.getElementById('numberPages').value = '';
 }
 
-
 function saveBook(book) {
   myLibrary.push(book);
 }
-
 
 function processForm() {
   const book = new Book();
@@ -146,12 +140,10 @@ function processForm() {
   }
 }
 
-
 saveBook(new Book('Atomic Habits', 'James Clear', true, 'Build habits and change your life', 234));
 saveBook(new Book('In Search of Lost Time ', 'Marcel Proust', true, 'Swanns Way, the first part of A la recherche de temps perdu', 434));
 saveBook(new Book('Ulysses ', 'James Joyce', false, 'Ulysses chronicles the passage of Leopold Bloom through Dublin during an ordinary day, June 16, 1904.', 734));
 saveBook(new Book(' Don Quixote', 'Miguel de Cervantes', false, 'Alonso Quixano, a retired country gentleman in his fifties,', 564));
-
 
 document.addEventListener('DOMContentLoaded', () => {
   refreshList();
