@@ -25,6 +25,7 @@
                 <div class="item-row titles container list-group-item-primary">
                     <div class="book-row-title book-row-short">Book Title</div>
                     <div class="book-row-title book-row-short">Author Name</div>
+                    <div class="book-row-title book-row-short">Pages</div>
                     <div class="book-row-title book-row-item">Small Summary</div>
                     <div class="book-row-title book-row-short">I Read the Book</div>
                     <div class="book-row-title remove-action ">Delete Book</div>
@@ -54,6 +55,10 @@
                                     <input type="text" class="form-control" id="bookAuthor">
                                 </div>
                                 <div class="form-group">
+                                    <label for="numberPages">Number of Pages</label>
+                                    <input type="number" class="form-control" id="numberPages">
+                                </div>
+                                <div class="form-group">
                                     <label for="bookSummary">Small Summary</label>
                                     <input type="text" class="form-control" id="bookSummary">
                                 </div>
@@ -62,7 +67,7 @@
                                     <input type="checkbox" class="form-check-input" id="readBook">
                                     <label class="form-check-label" for="yesReadBook">I have read this bookName</label>
                                 </div>
-                                <button type="button" onclick="saveBook()" class="btn btn-primary">Save Book</button>
+                                <button type="button" id="saveButton" class="btn btn-primary">Save Book</button>
                             </form>
                         </div>
                     </div>
