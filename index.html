@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script type="text/javascript" src="./assets/js/main.js"></script>
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <title>Library</title>
+</head>
+
+<body id="body">
+    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+        <li class="nav-item" role="presentation">
+            <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">My Library</a>
+        </li>
+        <li class="nav-item" role="presentation">
+            <a class="nav-link" id="pills-new-tab" data-toggle="pill" href="#pills-new" role="tab" aria-controls="pills-new" aria-selected="true">New book</a>
+        </li>
+    </ul>
+    <div class="tab-content" id="pills-tabContent">
+        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+            <section class="book-list">
+                <div class="item-row titles container list-group-item-primary">
+                    <div class="book-row-title book-row-short">Book Title</div>
+                    <div class="book-row-title book-row-short">Author Name</div>
+                    <div class="book-row-title book-row-short">Pages</div>
+                    <div class="book-row-title book-row-item">Small Summary</div>
+                    <div class="book-row-title book-row-short">I Read the Book</div>
+                    <div class="book-row-title remove-action ">Delete Book</div>
+                    <div class="book-row-title read-action ">Toggle</div>
+                </div>
+                <div id="bookListRender"></div>
+            </section>
+        </div>
+        <div class="tab-pane fade" id="pills-new" role="tabpanel" aria-labelledby="pills-profile-tab">
+            <div class="container">
+                <section class="book-form">
+                    <div class="card container">
+                        <div class="card-header">
+                            Create a New Book
+                        </div>
+                        <div class="card-body">
+                            <h5 class="card-title">New Book</h5>
+                            <form>
+                                <div class="alert alert-warning hide" role="alert" id="warningMessage">
+                                </div>
+                                <div class="form-group">
+                                    <label for="bookName">Book Name</label>
+                                    <input type="text" class="form-control" id="bookName">
+                                </div>
+                                <div class="form-group">
+                                    <label for="bookAuthor">Book Author</label>
+                                    <input type="text" class="form-control" id="bookAuthor">
+                                </div>
+                                <div class="form-group">
+                                    <label for="numberPages">Number of Pages</label>
+                                    <input type="number" class="form-control" id="numberPages">
+                                </div>
+                                <div class="form-group">
+                                    <label for="bookSummary">Small Summary</label>
+                                    <input type="text" class="form-control" id="bookSummary">
+                                </div>
+
+                                <div class="form-group form-check">
+                                    <input type="checkbox" class="form-check-input" id="readBook">
+                                    <label class="form-check-label" for="yesReadBook">I have read this bookName</label>
+                                </div>
+                                <button type="button" id="saveButton" class="btn btn-primary">Save Book</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+
+</html>

@@ -1,0 +1,35 @@
+.titles {
+  height: 40px;
+}
+
+.book-row-title {
+  height: 40px;
+}
+
+.book-row {
+  height: 90px;
+}
+
+.item-row {
+  display: flex;
+  flex-direction: row !important;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.item-row .book-row-short {
+  width: 15%;
+}
+
+.item-row .book-row-item {
+  width: 30%;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: block;
+}
