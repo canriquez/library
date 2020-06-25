@@ -4,34 +4,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script type="text/javascript" src="./assets/js/main.js"></script>
     <link rel="stylesheet" href="./assets/css/style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
     <title>Library</title>
 </head>
 
-<body id="body">
-    <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+<body>
+    <ul class="nav nav-pills mb-3 d-flex justify-content-end" id="pills-tab" role="tablist">
+
         <li class="nav-item" role="presentation">
             <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">My Library</a>
         </li>
         <li class="nav-item" role="presentation">
             <a class="nav-link" id="pills-new-tab" data-toggle="pill" href="#pills-new" role="tab" aria-controls="pills-new" aria-selected="true">New book</a>
         </li>
+        <li class="myBrand flex-grow-1">
+            <h1 class="navbar-brand text-right">MY AWESOME LIBRARY</h1>
+        </li>
     </ul>
     <div class="tab-content" id="pills-tabContent">
         <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
             <section class="book-list">
-                <div class="item-row titles container list-group-item-primary">
-                    <div class="book-row-title book-row-short">Book Title</div>
-                    <div class="book-row-title book-row-short">Author Name</div>
-                    <div class="book-row-title book-row-short">Pages</div>
-                    <div class="book-row-title book-row-item">Small Summary</div>
-                    <div class="book-row-title book-row-short">I Read the Book</div>
-                    <div class="book-row-title remove-action ">Delete Book</div>
-                    <div class="book-row-title read-action ">Toggle</div>
-                </div>
-                <div id="bookListRender"></div>
+                <table class="rtable">
+                    <thead>
+                      <tr>
+                        <th>Book Title</th>
+                        <th>Author Name</th>
+                        <th>Pages</td>
+                        <th>Small Summary</th>
+                        <th>Read?</th>
+                        <th>Delete</th>
+                        <th>Toggle Read</th>
+                      </tr>
+                    </thead>
+                    <tbody id="bookListRender">
+
+                    </tbody>
+                  </table>
             </section>
         </div>
         <div class="tab-pane fade" id="pills-new" role="tabpanel" aria-labelledby="pills-profile-tab">
@@ -82,6 +91,9 @@
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="./assets/js/main_classes.js"></script>
 </body>
 
 </html>
+
+
