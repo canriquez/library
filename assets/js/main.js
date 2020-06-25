@@ -1,7 +1,3 @@
-/* exported updateRead */
-/* exported saveBook */
-/* exported removeBook */
-
 const myLibrary = [];
 
 function Book(name, author, read, summary, pages) {
@@ -36,10 +32,10 @@ Book.prototype.renderBookHtmlTag = function renderBookHtmlTag(index) {
                   <div class="book-row book-row-item">${this.summary}</div>
                   <div class="book-row book-row-short">${this.readTag()}</div>
                   <div class="book-row remove-action ">
-                      <button type="button" class="btn-remove btn btn-outline-dark" onclick="removeBook(${index})" data-index="${index}">Remove Book</button>
+                      <button type="button" class="btn-remove btn btn-outline-dark" data-index="${index}">Remove Book</button>
                   </div>
                   <div class="book-row read-action ">
-                      <button type="button" class="btn-read btn btn-outline-dark" onclick="updateRead(${index})" data-index="${index}">${this.read ? 'Unread' : 'Read'}</button>
+                      <button type="button" class="btn-read btn btn-outline-dark" data-index="${index}">${this.read ? 'Unread' : 'Read'}</button>
                   </div>
               </div>`;
 };
@@ -54,7 +50,6 @@ Book.prototype.showAlert = function showAlert() {
   }
   return label;
 };
-
 
 Book.prototype.readTag = function readTag() {
   if (this.read) {
@@ -74,30 +69,53 @@ function renderBooks(bookList) {
 function refreshList() {
   const booksPlaceholder = document.getElementById('bookListRender');
   booksPlaceholder.innerHTML = renderBooks(myLibrary);
+  /* eslint-disable */
+    setTimeout(addListeners(), 300);
+    /* eslint-enable */
 }
 
-/* eslint-disable */
+function removeBook(index) {
+  myLibrary.splice(index, 1);
+  refreshList();
+}
+
 function updateRead(index) {
   const book = myLibrary[index];
   book.updateToggleRead();
   refreshList();
 }
-/* eslint-enable */
+
+function addListeners() {
+  const elements = document.getElementsByClassName('btn-remove');
+  const readButtons = document.getElementsByClassName('btn-read');
+  const myFunction = function myFunction() {
+    const attribute = this.getAttribute('data-index');
+    removeBook(attribute);
+  };
+  const updateFunction = function updateFunction() {
+    const attribute = this.getAttribute('data-index');
+    updateRead(attribute);
+  };
+
+  for (let i = 0; i < elements.length; i += 1) {
+    elements[i].addEventListener('click', myFunction, false);
+  }
+  for (let i = 0; i < readButtons.length; i += 1) {
+    readButtons[i].addEventListener('click', updateFunction, false);
+  }
+}
 
 function clearForm() {
   document.getElementById('bookName').value = '';
   document.getElementById('bookAuthor').value = '';
   document.getElementById('bookSummary').value = '';
   document.getElementById('readBook').checked = false;
+  document.getElementById('numberPages').value = '';
 }
-
-/* eslint-disable */
 
 function saveBook(book) {
   myLibrary.push(book);
-  return
 }
-
 
 function processForm() {
   const book = new Book();
@@ -121,15 +139,6 @@ function processForm() {
     document.getElementById('warningMessage').innerHTML = `Invalid entry on: ${validBook.join(', ')}`;
   }
 }
-/* eslint-enable */
-
-/* eslint-disable */
-function removeBook(index) {
-  myLibrary.splice(index, 1);
-  refreshList();
-}
-/* eslint-enable */
-
 
 saveBook(new Book('Atomic Habits', 'James Clear', true, 'Build habits and change your life', 234));
 saveBook(new Book('In Search of Lost Time ', 'Marcel Proust', true, 'Swanns Way, the first part of A la recherche de temps perdu', 434));
