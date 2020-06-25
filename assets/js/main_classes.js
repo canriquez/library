@@ -1,5 +1,5 @@
 const myLibrary = [];
-
+//Using classes for book objects
 class Book {
     constructor(name, author, read, summary, pages) { // constructor
         this.name = name;
