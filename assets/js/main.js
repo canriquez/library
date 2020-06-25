@@ -19,17 +19,12 @@ Book.prototype.updateToggleRead = function updateToggleRead() {
 Book.prototype.isValid = function isValid() {
   const valid = [];
   Object.keys(this).forEach((key) => {
-    console.log('current key;' + key)
     if (key !== 'read') {
       if (this[key] === '' || this[key] === undefined || this[key] === null) {
-        valid.push(key + ":cannot be empty");
-      };
+        valid.push(`${key}:cannot be empty`);
+      }
     }
   });
-  if (isNaN(this['pages'])) {
-    console.log('pages is not a number');
-    valid.push(key + ":must be a number");
-  };
   return valid;
 };
 
@@ -143,7 +138,7 @@ saveBook(new Book(' Don Quixote', 'Miguel de Cervantes', false, 'Alonso Quixano,
 
 document.addEventListener('DOMContentLoaded', () => {
   refreshList();
-  saveButton.addEventListener("click", function () {
+  document.getElementById('saveButton').addEventListener('click', () => {
     processForm();
-  })
+  });
 });

@@ -39,39 +39,26 @@ body {
   max-width: 100%;
   overflow-x: auto;
 
-  // optional - looks better for small cell values
+  /* optional - looks better for small cell values */
   white-space: nowrap;
   border-collapse: collapse;
   border-spacing: 0;
-}
 
-.rtable {
-  // optional - enable iOS momentum scrolling
+  /* optional - enable iOS momentum scrolling */
   -webkit-overflow-scrolling: touch;
 
-  // scrolling shadows
-  background: radial-gradient(left, ellipse, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 75%) 0 center,
+  /* scrolling shadows */
+  background:
+    radial-gradient(left, ellipse, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 75%) 0 center,
     radial-gradient(right, ellipse, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 75%) 100% center;
   background-size: 10px 100%, 10px 100%;
   background-attachment: scroll, scroll;
   background-repeat: no-repeat;
 }
 
-// change these gradients from white to your background colour if it differs
-// gradient on the first cells to hide the left shadow
-.rtable td:first-child {
-  background-image: linear-gradient(to right, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
-  background-repeat: no-repeat;
-  background-size: 20px 100%;
-}
+/* change these gradients from white to your background colour if it differs */
 
-// gradient on the last cells to hide the right shadow
-.rtable td:last-child {
-  background-image: linear-gradient(to left, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
-  background-repeat: no-repeat;
-  background-position: 100% 0;
-  background-size: 20px 100%;
-}
+/* gradient on the first cells to hide the left shadow */
 
 .rtable th {
   font-size: 11px;
@@ -84,6 +71,20 @@ body {
 .rtable td {
   padding: 6px 12px;
   border: 1px solid #d9d7ce;
+}
+
+.rtable td:first-child {
+  background-image: linear-gradient(to right, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+  background-repeat: no-repeat;
+  background-size: 20px 100%;
+}
+
+/* gradient on the last cells to hide the right shadow */
+.rtable td:last-child {
+  background-image: linear-gradient(to left, rgba(255, 255, 255, 1) 50%, rgba(255, 255, 255, 0) 100%);
+  background-repeat: no-repeat;
+  background-position: 100% 0;
+  background-size: 20px 100%;
 }
 
 h1,

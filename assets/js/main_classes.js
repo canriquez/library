@@ -1,37 +1,32 @@
 const myLibrary = [];
-//Using classes for book objects
+// Using classes for book objects
 class Book {
-    constructor(name, author, read, summary, pages) { // constructor
-        this.name = name;
-        this.author = author;
-        this.summary = summary;
-        this.read = read;
-        this.pages = pages;
-    }
+  constructor(name, author, read, summary, pages) { // constructor
+    this.name = name;
+    this.author = author;
+    this.summary = summary;
+    this.read = read;
+    this.pages = pages;
+  }
 
-    updateToggleRead() {
-        this.read = !this.read;
-    }
+  updateToggleRead() {
+    this.read = !this.read;
+  }
 
-    isValid() {
-        const valid = [];
-        Object.keys(this).forEach((key) => {
-            console.log('current key;' + key)
-            if (key !== 'read') {
-                if (this[key] === '' || this[key] === undefined || this[key] === null) {
-                    valid.push(key + ":cannot be empty");
-                };
-            }
-        });
-        if (isNaN(this['pages'])) {
-            console.log('pages is not a number');
-            valid.push(key + ":must be a number");
-        };
-        return valid;
-    };
+  isValid() {
+    const valid = [];
+    Object.keys(this).forEach((key) => {
+      if (key !== 'read') {
+        if (this[key] === '' || this[key] === undefined || this[key] === null) {
+          valid.push(`${key}:cannot be empty`);
+        }
+      }
+    });
+    return valid;
+  }
 
-    renderBookHtmlTag(index) {
-        return `<tr>
+  renderBookHtmlTag(index) {
+    return `<tr>
         <td>${this.name}</td>
         <td>${this.author}</td>
         <td>${this.pages}</td>
@@ -47,48 +42,39 @@ class Book {
         </button>
         </td>
     </tr>`;
-    };
+  }
 
-    showAlert() {
-        let label = `book:${this.name}, author:${this.author}`;
-        label += `, summary:${this.summary}`;
-        if (this.read) {
-            label += ', yes I have read this book';
-        } else {
-            label += ', not read';
-        }
-        return label;
-    };
-
-    readTag() {
-        if (this.read) {
-            return '<span class="yes-read">Yes</span>';
-        }
-        return '<span class="no-read">No</span>';
-    };
-
-    renderBooks(bookList) {
-        let htmlTags = '';
-        for (let i = 0; i < bookList.length; i += 1) {
-            htmlTags += bookList[i].renderBookHtmlTag(i);
-        }
-        return htmlTags;
+  showAlert() {
+    let label = `book:${this.name}, author:${this.author}`;
+    label += `, summary:${this.summary}`;
+    if (this.read) {
+      label += ', yes I have read this book';
+    } else {
+      label += ', not read';
     }
-}
+    return label;
+  }
 
+  readTag() {
+    if (this.read) {
+      return '<span class="yes-read">Yes</span>';
+    }
+    return '<span class="no-read">No</span>';
+  }
+}
 
 
 function renderBooks(bookList) {
-    let htmlTags = '';
-    for (let i = 0; i < bookList.length; i += 1) {
-        htmlTags += bookList[i].renderBookHtmlTag(i);
-    }
-    return htmlTags;
+  let htmlTags = '';
+  for (let i = 0; i < bookList.length; i += 1) {
+    htmlTags += bookList[i].renderBookHtmlTag(i);
+  }
+  return htmlTags;
 }
 
 function refreshList() {
-    const booksPlaceholder = document.getElementById('bookListRender');
-    booksPlaceholder.innerHTML = renderBooks(myLibrary);
+  const booksPlaceholder = document.getElementById('bookListRender');
+  booksPlaceholder.innerHTML = renderBooks(myLibrary);
 }
 
 /* eslint-disable */
@@ -100,10 +86,10 @@ function updateRead(index) {
 /* eslint-enable */
 
 function clearForm() {
-    document.getElementById('bookName').value = '';
-    document.getElementById('bookAuthor').value = '';
-    document.getElementById('bookSummary').value = '';
-    document.getElementById('readBook').checked = false;
+  document.getElementById('bookName').value = '';
+  document.getElementById('bookAuthor').value = '';
+  document.getElementById('bookSummary').value = '';
+  document.getElementById('readBook').checked = false;
 }
 
 /* eslint-disable */
@@ -152,8 +138,8 @@ saveBook(new Book('Ulysses ', 'James Joyce', false, 'Ulysses chronicles the pass
 saveBook(new Book(' Don Quixote', 'Miguel de Cervantes', false, 'Alonso Quixano, a retired country gentleman in his fifties,', 564));
 
 document.addEventListener('DOMContentLoaded', () => {
-    refreshList();
-    saveButton.addEventListener("click", function () {
-        processForm();
-    })
+  refreshList();
+  document.getElementById('saveButton').addEventListener('click', () => {
+    processForm();
+  });
 });
