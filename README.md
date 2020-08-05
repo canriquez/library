@@ -1,6 +1,6 @@
 # PROJECT: LIBRARY
 
-> Vanilla Javascript project that builds a small library application where you can add, delete and mark as 'read' books.
+> Vanilla Javascript project that builds a small library application where you can add, delete and mark as 'read' books. The library information gets stored into Firebase Real Time database.
 
 ![screenshot](/app_screenshot.png)
 
@@ -13,11 +13,12 @@
 ## Built With
 
 - HTML5 / CSS3 / JavaScript
+- Firebase Real Time Database
 - VS Code
 
 ## Live Demo
 
-[Live Demo Link](https://canriquez.github.io/library/)
+[Live Demo Link](https://raw.githack.com/canriquez/library/feat_firebase/index.html)
 
 
 ## Setup

@@ -26,6 +26,7 @@ class Book {
   }
 
   renderBookHtmlTag(index) {
+    if (index.null) { return; }
     return `<tr>
         <td>${this.name}</td>
         <td>${this.author}</td>
@@ -64,10 +65,34 @@ class Book {
 }
 
 
+/* Firebase configuration */
+
+// Your web app's Firebase configuration
+const firebaseConfig = {
+  apiKey: 'AIzaSyD8rw5MIWcelq1HM9JxJDG_wXCT3Zch_DU',
+  authDomain: 'js-library-e02ea.firebaseapp.com',
+  databaseURL: 'https://js-library-e02ea.firebaseio.com',
+  projectId: 'js-library-e02ea',
+  storageBucket: 'js-library-e02ea.appspot.com',
+  messagingSenderId: '1039637934443',
+  appId: '1:1039637934443:web:78ce3c64c6952302529c2e',
+  measurementId: 'G-B89FBJ4YB7',
+};
+
+// Initialize Firebase
+firebase.initializeApp(firebaseConfig);
+
+/* Saving data into firebase real time  database */
+const database = firebase.database();
+loadBooksFromDatabase(database);
+
+
 function renderBooks(bookList) {
   let htmlTags = '';
   for (let i = 0; i < bookList.length; i += 1) {
-    htmlTags += bookList[i].renderBookHtmlTag(i);
+    if (bookList[i]) {
+      htmlTags += bookList[i].renderBookHtmlTag(i);
+    }
   }
   return htmlTags;
 }
@@ -79,9 +104,12 @@ function refreshList() {
 
 /* eslint-disable */
 function updateRead(index) {
-    const book = myLibrary[index];
-    book.updateToggleRead();
-    refreshList();
+  const book = myLibrary[index];
+  book.updateToggleRead();
+
+  updateDbBook(book, index).then(
+    refreshList()
+  );
 }
 /* eslint-enable */
 
@@ -95,50 +123,107 @@ function clearForm() {
 /* eslint-disable */
 
 function saveBook(book) {
-    myLibrary.push(book);
-    return
+  myLibrary.push(book);
+  let index = myLibrary.length - 1
+  writeDbBook(book, index)
 }
 
-
 function processForm() {
-    const book = new Book();
-    book.name = document.getElementById('bookName').value;
-    book.author = document.getElementById('bookAuthor').value;
-    book.summary = document.getElementById('bookSummary').value;
-    book.pages = document.getElementById('numberPages').value;
-    book.read = document.getElementById('readBook').checked;
-    const validBook = book.isValid();
-    const element = document.getElementById('warningMessage');
-    if (validBook.length === 0) {
-        saveBook(book);
-        refreshList();
-        document.getElementById('warningMessage').innerHTML = '';
-        element.classList.add('hide');
-        element.classList.remove('show');
-        clearForm();
-    } else {
-        element.classList.add('show');
-        element.classList.remove('hide');
-        document.getElementById('warningMessage').innerHTML = `Invalid entry on: ${validBook.join(', ')}`;
-    }
+  const book = new Book();
+  book.name = document.getElementById('bookName').value;
+  book.author = document.getElementById('bookAuthor').value;
+  book.summary = document.getElementById('bookSummary').value;
+  book.pages = document.getElementById('numberPages').value;
+  book.read = document.getElementById('readBook').checked;
+  const validBook = book.isValid();
+  const element = document.getElementById('warningMessage');
+  if (validBook.length === 0) {
+    saveBook(book);
+    refreshList();
+    document.getElementById('warningMessage').innerHTML = '';
+    element.classList.add('hide');
+    element.classList.remove('show');
+    clearForm();
+  } else {
+    element.classList.add('show');
+    element.classList.remove('hide');
+    document.getElementById('warningMessage').innerHTML = `Invalid entry on: ${validBook.join(', ')}`;
+  }
 }
 /* eslint-enable */
 
 /* eslint-disable */
 function removeBook(index) {
-    myLibrary.splice(index, 1);
-    refreshList();
+  myLibrary.splice(index, 1);
+  deleteDbBook(index).then(
+    refreshList()
+  );
 }
 /* eslint-enable */
 
 
-saveBook(new Book('Atomic Habits', 'James Clear', true, 'Build habits and change your life', 234));
-saveBook(new Book('In Search of Lost Time ', 'Marcel Proust', true, 'Swanns Way, the first part of A la recherche de temps perdu', 434));
-saveBook(new Book('Ulysses ', 'James Joyce', false, 'Ulysses chronicles the passage of Leopold Bloom through Dublin during an ordinary day, June 16, 1904.', 734));
-saveBook(new Book(' Don Quixote', 'Miguel de Cervantes', false, 'Alonso Quixano, a retired country gentleman in his fifties,', 564));
+function writeUserData(userId, name, email, imageUrl) {
+  firebase.database().ref(`users/${userId}`).set({
+    username: name,
+    email,
+    profile_picture: imageUrl,
+  });
+}
+
+function writeDbBook(book, id) {
+  database.ref(`books/${id}`).set({
+    name: book.name,
+    author: book.author,
+    summary: book.summary,
+    pages: book.pages,
+    read: book.read,
+  });
+}
+
+function deleteDbBook(id) {
+  const update = {};
+  update[`books/${id}`] = null;
+  return firebase.database().ref().update(update);
+}
+
+function updateDbBook(book, id) {
+  const bookData = {
+    name: book.name,
+    author: book.author,
+    summary: book.summary,
+    pages: book.pages,
+    read: book.read,
+  };
+  const update = {};
+  update[`books/${id}`] = bookData;
+  return firebase.database().ref().update(update);
+}
+
+function storeLibraryInDb(library) {
+  for (let i = 0; i < library.length; i += 1) {
+    writeDbBook(library[i], i);
+  }
+}
+
+
+function loadBooksFromDatabase(database) {
+  firebase.database().ref('/books').once('value').then((snapshot) => {
+    const booksObject = (snapshot.val());
+    console.log(booksObject)
+    for (const key in booksObject) {
+      const data = booksObject[key];
+      myLibrary[key] = new Book(data.name, data.author, data.read, data.summary, data.pages);
+    }
+    refreshList();
+    console.log(myLibrary);
+    // ...
+  });
+}
+
 
 document.addEventListener('DOMContentLoaded', () => {
-  refreshList();
+  //  writeUserData(01, 'Carlos', 'canriquez@yoyo.com', 'https://mypicture.com');
+
   document.getElementById('saveButton').addEventListener('click', () => {
     processForm();
   });
