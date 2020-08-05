@@ -83,7 +83,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 /* Saving data into firebase real time  database */
-console.log('hey I am here');
 const database = firebase.database();
 loadBooksFromDatabase(database);
 
@@ -210,24 +209,17 @@ function storeLibraryInDb(library) {
 function loadBooksFromDatabase(database) {
   firebase.database().ref('/books').once('value').then((snapshot) => {
     const booksObject = (snapshot.val());
+    console.log(booksObject)
     for (const key in booksObject) {
       const data = booksObject[key];
-      console.log(key);
       myLibrary[key] = new Book(data.name, data.author, data.read, data.summary, data.pages);
     }
-    console.log('this is the final library from DB');
-    console.log(booksObject);
-    console.log(myLibrary);
     refreshList();
+    console.log(myLibrary);
     // ...
   });
 }
 
-
-// saveBook(new Book('Atomic Habits', 'James Clear', true, 'Build habits and change your life', 234));
-// saveBook(new Book('In Search of Lost Time ', 'Marcel Proust', true, 'Swanns Way, the first part of A la recherche de temps perdu', 434));
-// saveBook(new Book('Ulysses ', 'James Joyce', false, 'Ulysses chronicles the passage of Leopold Bloom through Dublin during an ordinary day, June 16, 1904.', 734));
-// saveBook(new Book(' Don Quixote', 'Miguel de Cervantes', false, 'Alonso Quixano, a retired country gentleman in his fifties,', 564));
 
 document.addEventListener('DOMContentLoaded', () => {
   //  writeUserData(01, 'Carlos', 'canriquez@yoyo.com', 'https://mypicture.com');

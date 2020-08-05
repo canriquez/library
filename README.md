@@ -17,7 +17,7 @@
 
 ## Live Demo
 
-[Live Demo Link](https://canriquez.github.io/library/)
+[Live Demo Link](https://raw.githack.com/canriquez/library/feat_firebase/index.html)
 
 
 ## Setup
